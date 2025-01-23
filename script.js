@@ -1,50 +1,47 @@
+function validateForm() {
+    const firstName = document.getElementById('FName').value.trim();
+    const lastName = document.getElementById('LName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('Pass').value.trim();
+    const errorMessages = document.querySelectorAll('.error-message');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for email validation
 
-document.getElementById("myForm").addEventListener("submit", function(event){
-    // Prevent form submission
-    event.preventDefault();
+    let isValid = true;
 
-    // Get form elements
-    const fname = document.getElementById("FName").value;
-    const lname = document.getElementById("LName").value;
-    const email = document.getElementById("email").value;
-    const pass = document.getElementById("Pass").value;
+    // Clear previous error messages
+    errorMessages.forEach(error => (error.style.display = 'none'));
 
-    // Check if any field is empty
-    if (fname === "" || lname === "" || email === "" || pass === ""){
-        // Display error message
-        document.getElementById("error-message").style.display = "block";
-    } else {
-        // Hide error message (if any)
-        document.getElementById("error-message").style.display = "none";
-        this.submit();
+    // Validate First Name
+    if (!firstName) {
+        errorMessages[0].style.display = 'block';
+        errorMessages[0].textContent = "First Name cannot be empty.";
+        isValid = false;
     }
-    
 
-    
-        // Submit the form (if all fields are filled)
-    
+    // Validate Last Name
+    if (!lastName) {
+        errorMessages[1].style.display = 'block';
+        errorMessages[1].textContent = "Last Name cannot be empty.";
+        isValid = false;
+    }
 
-});
+    // Validate Email
+    if (!email) {
+        errorMessages[2].style.display = 'block';
+        errorMessages[2].textContent = "Email Address cannot be empty.";
+        isValid = false;
+    } else if (!emailPattern.test(email)) {
+        errorMessages[2].style.display = 'block';
+        errorMessages[2].textContent = "Email Address is not valid.";
+        isValid = false;
+    }
 
+    // Validate Password
+    if (!password) {
+        errorMessages[3].style.display = 'block';
+        errorMessages[3].textContent = "Password cannot be empty.";
+        isValid = false;
+    }
 
-
-// function validateForm(){
-//     const fname = document.getElementById("FName").value;
-//     const lname = document.getElementById("LName").value;
-//     const email = document.getElementById("email").value;
-//     const pass = document.getElementById("Pass").value;
-
-//     // Check if any inpute field is empty
-//     if (fname === "" || lname === "" || email === "" || pass === ""){
-//         alert("Please fill in all fields.");
-//         return false;
-//     }
-
-//     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-//     if (!emailPattern.test(email)) {
-//         alert ("Please enter a valid email address.");
-//         return false;
-//     }
-
-//     return true;
-// }
+    return isValid; // Return false if any validation fails
+}
