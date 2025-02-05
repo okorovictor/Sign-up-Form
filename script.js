@@ -29,6 +29,7 @@ function validateForm() {
     if (!email) {
         errorMessages[2].style.display = 'block';
         errorMessages[2].textContent = "Email Address cannot be empty.";
+        document.querySelectorAll("input")[2].setAttribute("placeholder", "email@example.com");
         isValid = false;
     } else if (!emailPattern.test(email)) {
         errorMessages[2].style.display = 'block';
@@ -43,5 +44,7 @@ function validateForm() {
         isValid = false;
     }
 
-    return isValid; // Return false if any validation fails
+    // Return false if any validation fails
+    return isValid; 
+
 }
