@@ -70,3 +70,17 @@ aside .highlight{
     color: #e8491d ;
     font-weight: bold;
 }
+
+/* Media Queries */
+@media(max-width: 768px){
+    article#main-col,
+    aside#sidebar{
+        float: none;
+        text-align: center;
+        width: 95%;
+    }
+    section#main{
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+}

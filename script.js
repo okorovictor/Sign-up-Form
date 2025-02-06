@@ -23,7 +23,7 @@ function validateForm() {
         errorMessages[1].style.display = 'block';
         errorMessages[1].textContent = "Last Name cannot be empty.";
         isValid = false;
-    }
+    } 
 
     // Validate Email
     if (!email) {
